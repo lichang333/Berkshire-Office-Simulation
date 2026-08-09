@@ -10,7 +10,11 @@ export const meta = {
   ],
 }
 
-const DATE = args?.date || 'today'
+// workflow 内拿不到系统时间(Date.now 被禁用),日期必须由调用方传入
+if (!args?.date || !/^\d{4}-\d{2}-\d{2}$/.test(args.date)) {
+  throw new Error('必须传入 args: {date: "YYYY-MM-DD"},对应 office/inbox/<date>.md')
+}
+const DATE = args.date
 const INBOX = `office/inbox/${DATE}.md`
 
 phase('分拣')
@@ -78,7 +82,8 @@ const skeptic = await agent(
 phase('裁决')
 const verdict = await agent(
   `你是 chairman。依据以下材料裁决,并把条目追加到 office/ledger/decisions.md。\n` +
-  `默认答案是不。"可证伪的判断"是强制字段。归入太难筐的同时写入 office/ledger/too-hard.md。\n\n` +
+  `默认答案是不。"可证伪的判断"与"复核日期"是强制字段。归入太难筐的同时写入 office/ledger/too-hard.md。\n` +
+  `落账:批准的收购写入 office/ledger/portfolio.md;涉及浮存金/巨灾数字的更新 office/ledger/float.md。\n\n` +
   `【当日备忘录】\n${memos.join('\n\n---\n\n')}\n\n【证伪报告】\n${skeptic}`,
   { agentType: 'chairman', label: '董事长裁决', phase: '裁决' },
 )

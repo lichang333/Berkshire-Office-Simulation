@@ -53,12 +53,13 @@ Kiewit Plaza 14 楼。全职 26 人。没有法务部、没有公关部、没有
 
 | 文件 | 用途 |
 |---|---|
-| `office/ledger/decisions.md` | 决策日志。每条含:日期 / 事项 / 裁决 / 理由 / 事后可证伪的判断 |
+| `office/ledger/decisions.md` | 决策日志。每条含:日期 / 事项 / 裁决 / 理由 / 可证伪的判断 / **复核日期**。到期由 `chief-of-staff` 提醒、`chairman` 打分 |
 | `office/ledger/too-hard.md` | 太难筐。放弃的理由要写下来 |
 | `office/ledger/portfolio.md` | 持仓与成本、买入逻辑、卖出触发条件 |
 | `office/ledger/float.md` | 浮存金余额、承保损益、成本 |
 | `office/inbox/` | 当日来件(并购提案、子公司来信、股东提问) |
 | `office/memos/` | 当日产出的单页备忘录,一事一页 |
+| `office/letters/` | 年度致股东信归档,一年一篇 |
 
 ## 五、备忘录格式(唯一允许的公文)
 

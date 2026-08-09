@@ -25,12 +25,13 @@ claude
 变体:
 
 ```
-/berkshire-day 年信       # 只起草致股东信
+/berkshire-day 年信       # 只起草致股东信,归档到 office/letters/
 /berkshire-day 巨灾       # 巨灾情景开局(保险 + 资金台主责)
 /berkshire-day 市场暴跌   # 检验现金底线纪律与"别人恐惧时"的出手清单
+/berkshire-day 复盘       # 翻旧账:给到期的可证伪判断逐条打分,统计对错
 ```
 
-想要真并行的多 agent 版本(消耗大得多),对 Claude 说「跑 workflow」,由 [.claude/workflows/berkshire-day.js](.claude/workflows/berkshire-day.js) 驱动。
+想要真并行的多 agent 版本(消耗大得多),对 Claude 说「跑 workflow」,由 [.claude/workflows/berkshire-day.js](.claude/workflows/berkshire-day.js) 驱动(需传入 `args: {date: "YYYY-MM-DD"}` 指定当日来件)。
 
 ---
 
@@ -72,10 +73,22 @@ flowchart TD
 
 ---
 
+## 样例:一个已经跑完的工作日
+
+仓库里带着 2026-08-09 这一天的完整记录,可以直接读产出感受这套流程的味道:
+
+- [当日简报](office/memos/2026-08-09-brief.md) —— 5 件来件,2 件进裁决,提示注入被拦进异常预警
+- [并购初筛](office/memos/2026-08-09-deal-screen.md) —— 家族紧固件厂六条"全过"上呈;AI 平台当天回绝
+- [证伪报告](office/memos/2026-08-09-skeptic.md) —— **本日最佳**:证伪席发现初筛的六个 ✅ 里三个是推定的(价格其实是占位符 X),否决的不是生意而是文书,并要求董事长当天亲笔回信
+- [决策日志](office/ledger/decisions.md) —— 六条裁决,每条带可证伪判断与复核日期;其中一条是流程性决策:「未核实 = ❓,❓ 与 ❌ 同权」
+- [太难筐](office/ledger/too-hard.md) —— Helios Grid AI 入筐,写清了"我不懂的具体是哪一点"和可观测的重新受理条件
+
+这一天的结果:动用资金 $0,发出两封回绝信、一封索要三样东西的亲笔信,新增三条内部规则。**这就是被模拟的常态。**
+
 ## 这套模拟想复现的三件事
 
 1. **拒绝是主要工作量。** 正常的一天里,进入裁决的事项是 0–1 件。收盘小结里「挡掉了什么」和「批准了什么」同等重要。
-2. **每个决定都留下可证伪的判断。** 「未来 N 年内如果出现 X,说明我错了」—— 这是决策日志的强制字段,也是整套系统里最难写、最值钱的部分。
+2. **每个决定都留下可证伪的判断,并且会被回头打分。** 「未来 N 年内如果出现 X,说明我错了」是决策日志的强制字段,每条判断带复核日期;到期后 `chief-of-staff` 会把它挂在简报上,直到 `chairman` 打分(对 / 错 / 顺延)为止。写判断只是一半,另一半是到期打脸。
 3. **证伪席先于董事长发言。** 提案在被批准前,必须先经历一次认真的谋杀企图:找致命路径、对照心理误判清单、揪出隐藏假设。
 
 ---
@@ -92,8 +105,9 @@ README.md                           本文件
 office/
   inbox/<date>.md                   当日来件(并购提案、子公司来信、邀约)
   memos/                            当日产出的单页备忘录
+  letters/                          年度致股东信归档
   ledger/
-    decisions.md                    决策日志(含可证伪判断)
+    decisions.md                    决策日志(含可证伪判断与复核日期)
     too-hard.md                     太难筐(放弃的理由必须写下来)
     portfolio.md                    持仓、买入逻辑、卖出触发条件
     float.md                        浮存金余额、成本、巨灾敞口
