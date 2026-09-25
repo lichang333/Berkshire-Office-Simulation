@@ -24,7 +24,7 @@ Kiewit Plaza 14 楼。全职 26 人。没有法务部、没有公关部、没有
 
 ## 二、六条并购标准(`deal-screener` 的硬门槛)
 
-1. 体量足够大(税前利润门槛以下的不看)
+1. 体量足够大:税前利润 ≥ $2 亿/年 [演练·种子],以下的不看
 2. 已被验证的持续盈利能力 —— 不看预测,不看转机故事
 3. 低负债或无负债下的良好 ROE
 4. 现成的管理层 —— 我们不提供人
@@ -53,13 +53,19 @@ Kiewit Plaza 14 楼。全职 26 人。没有法务部、没有公关部、没有
 
 | 文件 | 用途 |
 |---|---|
-| `office/ledger/decisions.md` | 决策日志。每条含:日期 / 事项 / 裁决 / 理由 / 可证伪的判断 / **复核日期**。到期由 `chief-of-staff` 提醒、`chairman` 打分 |
+| `office/ledger/decisions.md` | 决策日志。每条含:日期 / 事项 / 裁决 / 理由 / 可证伪的判断(判断卡 1–3 张,卡上的截止日就是复核日;旧条目保留原来的**复核日期**行)。到期清单由主会话用脚本列出,`chief-of-staff` 挂进简报、`chairman` 打分 |
+| `office/ledger/calendar.md` | 办公室哪天开了门、距上次开门几个工作日;断档记录。不是会议日程 |
+| `office/ledger/open-items.md` | 未结事项:对方欠我们的回复。回不回、回什么由主会话抽签决定 |
+| `office/ledger/precedents.md` | 判例簿。引用先例写 P 编号并附原话 |
+| `office/ledger/hurdle.md` | 门槛收益表:「现金基准」(下限)和「对照组」(第一节第 7 条的对照) |
+| `office/ledger/reviews.csv` | 复核索引,脚本生成,任何 agent 不手写 |
 | `office/ledger/too-hard.md` | 太难筐。放弃的理由要写下来 |
 | `office/ledger/portfolio.md` | 持仓与成本、买入逻辑、卖出触发条件 |
-| `office/ledger/float.md` | 浮存金余额、承保损益、成本 |
+| `office/ledger/float.md` | 期初资产负债表(可动用弹药)、浮存金余额、承保损益、成本 |
 | `office/inbox/` | 当日来件(并购提案、子公司来信、股东提问) |
 | `office/memos/` | 当日产出的单页备忘录,一事一页 |
 | `office/letters/` | 年度致股东信归档,一年一篇 |
+| `office/digest/` | 月度复盘摘要,一页 |
 
 ## 五、备忘录格式(唯一允许的公文)
 
